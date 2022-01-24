@@ -28,6 +28,7 @@ const beginConnectionAttempt = async (event) => {
 
   // If the input value is empty, do not attempt to reconnect
   if (!address || !player) {
+    appendConsoleMessage('A server and player name are required to connect.');
     preventReconnect = true;
     lastServerAddress = null;
 

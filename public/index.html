@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Super Nintendo Client</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/console.css" />
+    <script type="application/ecmascript" src="assets/globals.js"></script>
+    <script type="application/ecmascript" src="assets/header.js"></script>
+    <script type="application/ecmascript" src="assets/console.js"></script>
+    <script type="application/ecmascript" src="assets/serverSocket.js"></script>
+</head>
+<body>
+    <div id="main-content">
+        <div id="header">
+            <table>
+                <tbody>
+                    <tr>
+                        <td><label for="server-address">Server:</label></td>
+                        <td><input id="server-address" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="player">Player:</label></td>
+                        <td><input id="player" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="spacer"></div>
+            <div>
+                <table>
+                    <tr>
+                        <td>Text Size:</td>
+                        <td>
+                            <button id="small-text">Small</button>
+                            <button id="medium-text">Medium</button>
+                            <button id="large-text">Large</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td id="server-status" class="disconnected">Not Connected</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="console-output-wrapper">
+            <!-- Console messages will appear here as divs -->
+        </div>
+        <div id="console-input-wrapper">
+            <label for="console-input">Command:</label>
+            <input id="console-input" placeholder="Enter a chat message, slash command, or use /help" />
+        </div>
+    </div>
+</body>
+</html>

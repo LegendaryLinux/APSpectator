@@ -15,3 +15,7 @@ const permissionMap = {
 
 // Tracks if automatic scrolling is currently paused
 let autoScrollPaused = false;
+
+// Item and location handling
+let apItemsById = {};
+let apLocationsById = {};

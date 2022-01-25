@@ -13,13 +13,18 @@ let preventReconnect = false;
 let reconnectAttempts = 0;
 let reconnectTimeout = null;
 
-window.addEventListener('load', async () => {
+// Players in the current game, received from Connected server packet
+let playerSlot = null;
+let playerTeam = null;
+let players = [];
+
+window.addEventListener('load', () => {
   // Handle server address change
   document.getElementById('server-address').addEventListener('keydown', beginConnectionAttempt);
   document.getElementById('player').addEventListener('keydown', beginConnectionAttempt);
 });
 
-const beginConnectionAttempt = async (event) => {
+const beginConnectionAttempt = (event) => {
   if (event.key !== 'Enter') { return; }
 
   // User-input values
@@ -74,7 +79,7 @@ const connectToServer = (address, password = null) => {
   };
 
   // Handle incoming messages
-  serverSocket.onmessage = async (event) => {
+  serverSocket.onmessage = (event) => {
     const commands = JSON.parse(event.data);
     for (let command of commands) {
       const serverStatus = document.getElementById('server-status');
@@ -101,10 +106,19 @@ const connectToServer = (address, password = null) => {
           // Reset reconnection info if necessary
           reconnectAttempts = 0;
 
+          // Save the list of players provided by the server
+          players = command.players;
+
+          // Save information about the current player
+          playerTeam = command.team;
+          playerSlot = command.slot;
+
           // Update header text
           serverStatus.classList.remove('disconnected');
           serverStatus.innerText = 'Connected';
           serverStatus.classList.add('connected');
+
+          requestDataPackage();
           break;
 
         case 'ConnectionRefused':
@@ -144,6 +158,7 @@ const connectToServer = (address, password = null) => {
           break;
 
         case 'DataPackage':
+          buildItemAndLocationData(command.data);
           break;
 
         case 'Bounced':
@@ -222,4 +237,25 @@ const sendMessageToServer = (message) => {
       text: message,
     }]));
   }
+};
+
+const requestDataPackage = () => {
+  if (!serverSocket || serverSocket.readyState !== WebSocket.OPEN) { return; }
+  serverSocket.send(JSON.stringify([{
+    cmd: 'GetDataPackage',
+  }]));
+};
+
+const buildItemAndLocationData = (dataPackage) => {
+  Object.keys(dataPackage.games).forEach((gameName) => {
+    // Build itemId map
+    Object.keys(dataPackage.games[gameName].item_name_to_id).forEach((itemName) => {
+      apItemsById[dataPackage.games[gameName].item_name_to_id[itemName]] = itemName;
+    });
+
+    // Build locationId map
+    Object.keys(dataPackage.games[gameName].location_name_to_id).forEach((locationName) => {
+      apLocationsById[dataPackage.games[gameName].location_name_to_id[locationName]] = locationName;
+    });
+  });
 };

@@ -132,11 +132,11 @@ const appendFormattedConsoleMessage = (messageParts) => {
           break;
         case 'item_id':
           span.style.color = '#fc5252';
-          span.innerText = gameInstance.getItemById(Number(part.text));
+          span.innerText = apItemsById[Number(part.text)];
           break;
         case 'location_id':
           span.style.color = '#5ea2c1';
-          span.innerText = gameInstance.getLocationById(Number(part.text));
+          span.innerText = apLocationsById[Number(part.text)];
           break;
         default:
           span.innerText = part.text;

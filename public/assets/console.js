@@ -40,16 +40,20 @@ window.addEventListener('load', () => {
       const commandParts = event.target.value.split(' ');
       switch (commandParts[0]) {
         case '/connect':
-          if (snesDevice === null) {
-            appendConsoleMessage('A SNES device must be connected before a server connection can be established.');
-            return;
+          commandParts.shift();
+          const address = commandParts[0] || null;
+          const player = commandParts[1] || null;
+          const password = commandParts[2] || null;
+          document.getElementById('server-address').value = address;
+          document.getElementById('player').value = player;
+
+          // Server address and player name are required
+          if (!address || !player) {
+            appendConsoleMessage('Server address and player name are required to connect.');
+            break;
           }
 
-          commandParts.shift();
-          const address = commandParts[0];
-          const password = commandParts[1] || null;
-          document.getElementById('server-address').value = address;
-          connectToServer(address, password);
+          connectToServer(address, player, password);
           break;
 
         case '/fontsize':
@@ -59,11 +63,16 @@ window.addEventListener('load', () => {
           setFontSize(parseInt(commandParts[1]));
           break;
 
+        case '/ui':
+          toggleUi();
+          break;
+
         // This command is not in alphabetical order because it's convenient to have it last
         case '/help':
           appendConsoleMessage('Available commands:');
-          appendConsoleMessage('/connect [server] [password] - Connect to an AP server with an optional password');
+          appendConsoleMessage('/connect [server] [player] [password] - Connect to an AP server with an optional password');
           appendConsoleMessage('/fontsize [size] - Change the size of the font. 16 is default');
+          appendConsoleMessage('/ui - Toggle UI visibility');
           appendConsoleMessage('/help - Print this message');
           break;
 

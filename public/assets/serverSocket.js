@@ -49,10 +49,10 @@ const beginConnectionAttempt = (event) => {
 
   // User specified a server. Attempt to connect
   preventReconnect = false;
-  connectToServer(address);
+  connectToServer(address, player);
 };
 
-const connectToServer = (address, password = null) => {
+const connectToServer = (address, player, password = null) => {
   if (serverSocket && serverSocket.readyState === WebSocket.OPEN) {
     serverSocket.close();
     serverSocket = null;
@@ -89,7 +89,7 @@ const connectToServer = (address, password = null) => {
           const connectionData = {
             cmd: 'Connect',
             game: 'Archipelago',
-            name: document.getElementById('player').value,
+            name: player,
             uuid: getClientId(),
             tags: ['TextOnly', 'IgnoreGame', 'Spectator'],
             password: serverPassword,

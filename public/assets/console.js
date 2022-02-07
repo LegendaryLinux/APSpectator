@@ -4,6 +4,21 @@ const maxConsoleMessages = 500;
 let commandCursor = 0;
 
 window.addEventListener('load', () => {
+  var url = new URL(window.location)
+  var server = url.searchParams.get("server");
+  var player = url.searchParams.get("player");
+  var password = url.searchParams.get("password");
+  var hideUI = !!parseInt(url.searchParams.get("hideui"));
+
+  if(server && player) {
+    connectToServer(server, player, password);
+  }
+
+  if(hideUI) {
+    document.getElementById('header').classList.add('invisible');
+    document.getElementById('console-input-wrapper').classList.add('invisible');
+  }
+
   const commandInput = document.getElementById('console-input');
   commandInput.addEventListener('keydown', (event) => {
     // Only perform events on desired keys

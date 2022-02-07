@@ -28,3 +28,20 @@
     margin-left: 0.5rem;
     flex-grow: 100;
 }
+
+.cmsg-player-other {
+    color: #52b44c;
+}
+
+.cmsg-player-self {
+    color: #ffa565;
+    font-weight: bold;
+}
+
+.cmsg-item {
+    color: #fc5252;
+}
+
+.cmsg-location {
+    color: #5ea2c1;
+}

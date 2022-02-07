@@ -4,6 +4,21 @@ const maxConsoleMessages = 500;
 let commandCursor = 0;
 
 window.addEventListener('load', () => {
+  var url = new URL(window.location)
+  var server = url.searchParams.get("server");
+  var player = url.searchParams.get("player");
+  var password = url.searchParams.get("password");
+  var hideUI = !!parseInt(url.searchParams.get("hideui"));
+
+  if(server && player) {
+    connectToServer(server, player, password);
+  }
+
+  if(hideUI) {
+    document.getElementById('header').classList.add('invisible');
+    document.getElementById('console-input-wrapper').classList.add('invisible');
+  }
+
   const commandInput = document.getElementById('console-input');
   commandInput.addEventListener('keydown', (event) => {
     // Only perform events on desired keys
@@ -135,16 +150,19 @@ const appendFormattedConsoleMessage = (messageParts) => {
       switch(part.type){
         case 'player_id':
           const playerIsClient = parseInt(part.text, 10) === playerSlot;
-          if (playerIsClient) { span.style.fontWeight = 'bold'; }
-          span.style.color = playerIsClient ? '#ffa565' : '#52b44c';
+          if (playerIsClient) {
+            span.classList.add("cmsg-player-self");
+          } else {
+            span.classList.add("cmsg-player-other");
+          }
           span.innerText = players[parseInt(part.text, 10) - 1].alias;
           break;
         case 'item_id':
-          span.style.color = '#fc5252';
+          span.classList.add("cmsg-item");
           span.innerText = apItemsById[Number(part.text)];
           break;
         case 'location_id':
-          span.style.color = '#5ea2c1';
+          span.classList.add("cmsg-location");
           span.innerText = apLocationsById[Number(part.text)];
           break;
         default:

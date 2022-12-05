@@ -135,16 +135,19 @@ const appendFormattedConsoleMessage = (messageParts) => {
       switch(part.type){
         case 'player_id':
           const playerIsClient = parseInt(part.text, 10) === playerSlot;
-          if (playerIsClient) { span.style.fontWeight = 'bold'; }
-          span.style.color = playerIsClient ? '#ffa565' : '#52b44c';
+          if (playerIsClient) {
+            span.classList.add("console-message-player-self");
+          } else {
+            span.classList.add("console-message-player-other");
+          }
           span.innerText = players[parseInt(part.text, 10) - 1].alias;
           break;
         case 'item_id':
-          span.style.color = '#fc5252';
+          span.classList.add("console-message-item");
           span.innerText = apItemsById[Number(part.text)];
           break;
         case 'location_id':
-          span.style.color = '#5ea2c1';
+          span.classList.add("console-message-location");
           span.innerText = apLocationsById[Number(part.text)];
           break;
         default:

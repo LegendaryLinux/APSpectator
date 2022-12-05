@@ -24,7 +24,28 @@
     margin-top: 10px;
 }
 
+#console-input-wrapper.hidden{
+    display: none;
+}
+
 #console-input{
     margin-left: 0.5rem;
     flex-grow: 100;
+}
+
+.console-message-player-other {
+    color: #52b44c;
+}
+
+.console-message-player-self {
+    color: #ffa565;
+    font-weight: bold;
+}
+
+.console-message-item {
+    color: #fc5252;
+}
+
+.console-message-location {
+    color: #5ea2c1;
 }

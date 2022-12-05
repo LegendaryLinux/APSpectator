@@ -19,8 +19,8 @@ const setFontSize = (size) => {
 const toggleUi = () => {
   // SHow or hide the UI
   uiVisible ?
-    document.getElementById('header').classList.add('invisible') :
-    document.getElementById('header').classList.remove('invisible');
+    document.getElementById('header').classList.add('hidden') :
+    document.getElementById('header').classList.remove('hidden');
 
   // Toggle the UI state flag
   uiVisible = !uiVisible;

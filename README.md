@@ -1,5 +1,5 @@
 # APSpectator
-A web-based spectator client for Archipelago
+A web-based spectator client for [Archipelago](https://archipelago.gg/).
 
 ## Usage as a browser source (OBS, SLOBS, etc.)
 

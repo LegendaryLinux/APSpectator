@@ -88,10 +88,10 @@ const connectToServer = (address, player, password = null) => {
           // Authenticate with the server
           const connectionData = {
             cmd: 'Connect',
-            game: 'Archipelago',
+            game: null,
             name: player,
             uuid: getClientId(),
-            tags: ['TextOnly', 'IgnoreGame', 'Spectator'],
+            tags: ['TextOnly', 'Spectator'],
             password: serverPassword,
             version: ARCHIPELAGO_PROTOCOL_VERSION,
             items_handling: 0b000,

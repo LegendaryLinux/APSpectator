@@ -24,24 +24,28 @@
     margin-top: 10px;
 }
 
+#console-input-wrapper.hidden{
+    display: none;
+}
+
 #console-input{
     margin-left: 0.5rem;
     flex-grow: 100;
 }
 
-.cmsg-player-other {
+.console-message-player-other {
     color: #52b44c;
 }
 
-.cmsg-player-self {
+.console-message-player-self {
     color: #ffa565;
     font-weight: bold;
 }
 
-.cmsg-item {
+.console-message-item {
     color: #fc5252;
 }
 
-.cmsg-location {
+.console-message-location {
     color: #5ea2c1;
 }

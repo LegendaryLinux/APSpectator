@@ -22,6 +22,19 @@ window.addEventListener('load', () => {
   // Handle server address change
   document.getElementById('server-address').addEventListener('keydown', beginConnectionAttempt);
   document.getElementById('player').addEventListener('keydown', beginConnectionAttempt);
+
+  const url = new URL(window.location)
+  const server = url.searchParams.get('server');
+  const player = url.searchParams.get('player');
+
+  if(server && player) {
+    connectToServer(server, player, url.searchParams.get('password'));
+  }
+
+  if(!!parseInt(url.searchParams.get('hideui'))) {
+    document.getElementById('header').classList.add('hidden');
+    document.getElementById('console-input-wrapper').classList.add('hidden');
+  }
 });
 
 const beginConnectionAttempt = (event) => {
@@ -80,6 +93,8 @@ const connectToServer = (address, player, password = null) => {
 
   // Handle incoming messages
   serverSocket.onmessage = (event) => {
+    console.log(event);
+
     const commands = JSON.parse(event.data);
     for (let command of commands) {
       const serverStatus = document.getElementById('server-status');
@@ -88,10 +103,10 @@ const connectToServer = (address, player, password = null) => {
           // Authenticate with the server
           const connectionData = {
             cmd: 'Connect',
-            game: 'Archipelago',
+            game: null,
             name: player,
             uuid: getClientId(),
-            tags: ['TextOnly', 'IgnoreGame', 'Spectator'],
+            tags: ['TextOnly', 'Spectator'],
             password: serverPassword,
             version: ARCHIPELAGO_PROTOCOL_VERSION,
             items_handling: 0b000,

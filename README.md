@@ -25,15 +25,30 @@ Example:
 Using OBS, you can override the CSS used to style the client's output.  Here's a reasonably good starting point:
 
 ```css
-body { background-color: rgba(0, 0, 0, 0); margin: 0 auto; overflow: hidden; }
-#main-content { border: 0; padding: 0; margin: 0; }
-#console-output-wrapper { overflow: hidden; }
+body {
+    background-color: rgba(0, 0, 0, 0);
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#main-content {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+#console-output-wrapper {
+    overflow: hidden;
+}
 ```
 
 To change the background color, add it to `#console-output-wrapper`.  Here's a translucent black background:
 
 ```css
-#console-output-wrapper { overflow: hidden; background-color: rgba(0, 0, 0, 75%); }
+#console-output-wrapper {
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 75%);
+}
 ```
 
 You can change the styling for references to your name by styling `.console-message-player-self`, other players with

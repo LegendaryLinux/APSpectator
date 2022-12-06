@@ -51,6 +51,18 @@ To change the background color, add it to `#console-output-wrapper`.  Here's a t
 }
 ```
 
-You can change the styling for references to your name by styling `.console-message-player-self`, other players with
-`.console-message-player-other`, item names with `.console-message-item`, and locations with `.console-message-location`.  For more details,
-see `console.css`
+You can change other elements by styling the following CSS classes:
+
+| CSS Class                           | Explanation
+| ----------------------------------- | -----------
+| `.console-message-player-self`      | Your player name
+| `.console-message-player-other`     | Other player names
+| `.console-message-location`         | Location names
+| `.console-message-item`             | Items (all types)
+| `.console-message-item-advancement` | Advancement items
+| `.console-message-item-useful`      | Useful items
+| `.console-message-item-trap`        | Trap items
+| `.console-message-item-normal`      | Items that aren't in any of the above categories
+| `.console-message-entrance`         | Entrance names (seen in hints)
+
+For more details, see [console.css](public/styles/console.css).  For a sample that updates colors to match common client colors, see [commonclient.css](public/styles/commonclient.css)

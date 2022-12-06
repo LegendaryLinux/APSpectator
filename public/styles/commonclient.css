@@ -1,0 +1,33 @@
+/*
+This CSS isn't used anywhere... but the colors listed here match the Archipelago Common Client colors.
+
+You can use this to override the default Spectator Client e.g. in OBS.
+ */
+
+.console-message-player-other {
+    color: #FAFAD2;
+}
+.console-message-player-self {
+    color: #EE00EE;
+    font-weight: bold;
+}
+.console-message-item {
+    color: #00EEEE;
+}
+.console-message-location {
+    color: #00FF7F;
+}
+.console-message-entrance {
+    color: #6495ED;
+}
+.console-message-item-advancement {
+    color: #AF99EF;
+}
+.console-message-item-useful {
+    color: #6D8BE8;
+}
+.console-message-item-trap {
+    color: #FA8072;
+}
+.console-message-item-normal {
+}

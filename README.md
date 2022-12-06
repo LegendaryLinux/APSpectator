@@ -34,4 +34,17 @@ To change the background color, add it to `#console-output-wrapper`.  Here's a t
 #console-output-wrapper { overflow: hidden; background-color: rgba(0, 0, 0, 75%); }
 ```
 
-You can change the styling for references to your name by styling `.cmsg-player-self`, other players with `.cmsg-player-other`, item names with `.cmsg-item`, and locations with `.cmsg-location`.  For more details, see `console.css`
+You can change other elements by styling the following CSS classes:
+
+| CSS Class            | Explanation
+| -------------------- | -----------
+| `.cmsg-player-self`  | Your player
+| `.cmsg-player-other` | Other players
+| `.cmsg-location`     | Location names
+| `.cmsg-item`         | Items (all types)
+| `.item-advancement`  | Advancement items
+| `.item-useful`       | Useful items
+| `.item-trap`         | Trap items
+| `.cmsg-entrance`     | Entrance names (seen in hints)
+
+For more details, see [console.css](public/styles/console.css).  For a sample that updates colors to match common client colors, see [commonclient.css](public/styles/commonclient.css) 

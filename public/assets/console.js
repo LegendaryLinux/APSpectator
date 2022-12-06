@@ -159,11 +159,29 @@ const appendFormattedConsoleMessage = (messageParts) => {
           break;
         case 'item_id':
           span.classList.add("cmsg-item");
+          if(part.flags & 0b001) {
+            span.classList.add("item-advancement");
+            span.setAttribute("title", "Advancement Item")
+          }
+          if(part.flags & 0b010) {
+            span.classList.add("item-useful");
+            span.setAttribute("title", "Useful Item")
+          }
+          if(part.flags & 0b100) {
+            span.classList.add("item-trap");
+            span.setAttribute("title", "Trap")
+          }
           span.innerText = apItemsById[Number(part.text)];
+
+          console.log(part)
           break;
         case 'location_id':
           span.classList.add("cmsg-location");
           span.innerText = apLocationsById[Number(part.text)];
+          break;
+        case 'entrance_name':
+          span.classList.add("cmsg-entrance");
+          span.innerText = part.text;
           break;
         default:
           span.innerText = part.text;

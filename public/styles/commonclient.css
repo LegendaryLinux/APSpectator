@@ -1,0 +1,32 @@
+/*
+This CSS isn't used anywhere... but the colors listed here match the Archipelago Common Client colors.
+
+You can use this to override the default Spectator Client e.g. in OBS.
+ */
+
+.cmsg-player-other {
+    color: #FAFAD2;
+}
+.cmsg-player-self {
+    color: #EE00EE;
+    font-weight: bold;
+}
+.cmsg-item {
+    color: #00EEEE;
+}
+.cmsg-location {
+    color: #00FF7F;
+}
+.cmsg-entrance {
+    color: #6495ED;
+}
+
+.item-advancement {
+    color: #AF99EF;
+}
+.item-useful {
+    color: #6D8BE8;
+}
+.item-trap {
+    color: #FA8072;
+}
